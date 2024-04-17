@@ -29,18 +29,19 @@ def selection_sort(list_of_numbers, direction=1):   # direction > 0 - vzestupně
     :param list_of_numbers: (list) List of numbers to sort
     :return: (list) List of sorted numbers
     """
-    if direction > 0:
-        for i in range(1, len(list_of_numbers)):
-            for l in range(len(list_of_numbers)):
-                if list_of_numbers[l] > list_of_numbers[i]:
-                    list_of_numbers[l], list_of_numbers[i] = list_of_numbers[i], list_of_numbers[l]
-    elif direction < 0:
-        for i in range(1, len(list_of_numbers)):
-            for l in range(len(list_of_numbers)):
-                if list_of_numbers[l] < list_of_numbers[i]:
-                    list_of_numbers[l], list_of_numbers[i] = list_of_numbers[i], list_of_numbers[l]
-    else:
-        return None
+
+    for i in range(len(list_of_numbers)):
+        min_idx = i
+        for l in range(i + 1, len(list_of_numbers)):
+            if direction > 0:
+                if list_of_numbers[min_idx] > list_of_numbers[l]:
+                    min_idx = l
+            elif direction < 0:
+                if list_of_numbers[min_idx] < list_of_numbers[l]:
+                    min_idx = l
+            else:
+                return None
+        list_of_numbers[min_idx], list_of_numbers[i] = list_of_numbers[i], list_of_numbers[min_idx]
     return list_of_numbers
 
 
@@ -52,11 +53,15 @@ def bubble_sort(list_of_numbers):
     return list_of_numbers
 
 
+def insertion_sort():
+    ...
+
+
 def main():
     dictionary = read_data("numbers.csv")
     print(dictionary)
-    print(selection_sort(dictionary["series_3"]))
-    print(bubble_sort(dictionary["series_3"]))
+    print(selection_sort(dictionary["series_1"], 1))
+    print(bubble_sort(dictionary["series_1"]))
 
 
 if __name__ == '__main__':
