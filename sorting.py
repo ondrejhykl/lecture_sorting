@@ -23,23 +23,29 @@ def read_data(file_name):
         return data
 
 
-def selection_sort(list_of_numbers):
+def selection_sort(list_of_numbers, direction=1):
     """
     Sorts numbers from smallest to biggest
     :param list_of_numbers: (list) List of numbers to sort
     :return: (list) List of sorted numbers
     """
-    for i in range(1, len(list_of_numbers)):
-        for l in range(len(list_of_numbers)):
-            if list_of_numbers[l] > list_of_numbers[i]:
-                list_of_numbers[l], list_of_numbers[i] = list_of_numbers[i], list_of_numbers[l]
+    if direction > 0:
+        for i in range(1, len(list_of_numbers)):
+            for l in range(len(list_of_numbers)):
+                if list_of_numbers[l] > list_of_numbers[i]:
+                    list_of_numbers[l], list_of_numbers[i] = list_of_numbers[i], list_of_numbers[l]
+    else:
+        for i in range(1, len(list_of_numbers)):
+            for l in range(len(list_of_numbers)):
+                if list_of_numbers[l] < list_of_numbers[i]:
+                    list_of_numbers[l], list_of_numbers[i] = list_of_numbers[i], list_of_numbers[l]
     return list_of_numbers
 
 
 def main():
     dictionary = read_data("numbers.csv")
     print(dictionary)
-    print(selection_sort(dictionary["series_3"]))
+    print(selection_sort(dictionary["series_3"], 1))
 
 
 if __name__ == '__main__':
