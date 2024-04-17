@@ -20,11 +20,21 @@ def read_data(file_name):
                     data[key] = [int(row[key])]
                 else:
                     data[key].append(int(row[key]))
-        print(data)
+        return data
+
+
+def selection_sort(list_of_numbers):
+    for i in range(len(list_of_numbers) - 1):
+        for l in range(len(list_of_numbers) - 1):
+            if list_of_numbers[l] > list_of_numbers[l+1]:
+                list_of_numbers[l], list_of_numbers[l+1] = list_of_numbers[l+1], list_of_numbers[l]
+    return list_of_numbers
 
 
 def main():
-    print(read_data("numbers.csv"))
+    dictionary = read_data("numbers.csv")
+    print(dictionary)
+    print(selection_sort(dictionary["series_1"]))
 
 
 if __name__ == '__main__':
