@@ -47,21 +47,31 @@ def selection_sort(list_of_numbers, direction=1):   # direction > 0 - vzestupně
 
 def bubble_sort(list_of_numbers):
     for i in range(len(list_of_numbers) - 1):
-        for l in range(len(list_of_numbers) - 1):
+        for l in range(len(list_of_numbers) - 1 - i):
             if list_of_numbers[l] > list_of_numbers[l + 1]:
                 list_of_numbers[l], list_of_numbers[l + 1] = list_of_numbers[l + 1], list_of_numbers[l]
     return list_of_numbers
 
 
-def insertion_sort():
-    ...
+def insertion_sort(list_of_numbers):
+    for i in range(1, len(list_of_numbers)):
+        current_num = list_of_numbers.pop(i)
+        j = i
+        while j > 0:
+            j -= 1
+            if current_num > list_of_numbers[j]:
+                j += 1
+                break
+        list_of_numbers.insert(j, current_num)
+    return list_of_numbers
 
 
 def main():
     dictionary = read_data("numbers.csv")
     print(dictionary)
-    print(selection_sort(dictionary["series_1"], 1))
-    print(bubble_sort(dictionary["series_1"]))
+    print(selection_sort(dictionary["series_3"].copy(), 1))
+    print(bubble_sort(dictionary["series_3"].copy()))
+    print(insertion_sort(dictionary["series_3"].copy()))
 
 
 if __name__ == '__main__':
